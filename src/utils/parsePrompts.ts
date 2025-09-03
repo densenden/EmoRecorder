@@ -1,7 +1,7 @@
-export interface Prompt {
+export type Prompt = {
   emotion: string;
   sentence: string;
-}
+};
 
 export function parsePrompts(text: string): Prompt[] {
   const prompts: Prompt[] = [];
