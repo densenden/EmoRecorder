@@ -30,10 +30,12 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
       const filename = `${emotion}_${sentenceSlug}.wav`;
       const path = `${user.id}/${emotion}/${filename}`;
 
-      // First, check if the bucket exists or create it
-      const { data: buckets, error: listError } = await supabase.storage.listBuckets();
-      console.log('Available buckets:', buckets);
-      console.log('List error:', listError);
+      // Log upload attempt
+      console.log('Attempting to upload:', {
+        path,
+        blobSize: audioBlob.size,
+        userId: user.id
+      });
 
       const { data, error } = await supabase.storage
         .from('emo-recordings')
@@ -43,12 +45,29 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
         });
 
       if (error) {
-        console.error('Upload error details:', error);
-        console.error('Error message:', error.message);
-        console.error('Error status:', error.statusCode);
-        alert(`Failed to upload audio: ${error.message}`);
+        console.error('Upload error:', error);
+        
+        // Provide helpful error messages
+        let errorMessage = 'Failed to upload audio. ';
+        
+        if (error.message?.includes('row-level security')) {
+          errorMessage += 'RLS policy error. Please disable RLS for the bucket or add proper policies. See SUPABASE_RLS_FIX.md for instructions.';
+        } else if (error.message?.includes('bucket not found')) {
+          errorMessage += 'Storage bucket "emo-recordings" not found. Please create it in Supabase.';
+        } else if (error.message?.includes('signature')) {
+          errorMessage += 'Authentication error. Please check your Supabase keys.';
+        } else {
+          errorMessage += error.message;
+        }
+        
+        alert(errorMessage);
+        console.error('Full error details:', {
+          message: error.message,
+          statusCode: error.statusCode,
+          error
+        });
       } else {
-        console.log('Upload successful:', data);
+        console.log('Upload successful!', data);
         moveToNext();
       }
     } catch (error) {

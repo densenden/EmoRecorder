@@ -15,17 +15,20 @@ export const ImportPrompts: React.FC<ImportPromptsProps> = ({ onImport }) => {
     }
   };
 
-  const exampleText = `Sad:
-I tried everything, but it still hurts.
-Sometimes I wonder if things will ever get better.
+  const exampleText = `Traurig:
+Hast du irgendwelche Ratschläge in Betracht gezogen?
 
-Excited:
-Guess what? We're going to space!
-This is the best day of my life!
+Lachend:
+Was ist der gefährlichste Kaffee der Welt? Der *Expresso!*
 
-Angry:
-I can't believe you would say that.
-This is absolutely unacceptable.`;
+Flüsternd:
+Das Ziel Großbritanniens bei der Gründung von New South Wales war es, eine Strafkolonie zu errichten.
+
+Verwirrt:
+Der erste wird in 16 Stunden und 6 Minuten aktiviert, und der zweite 6 Stunden und 7 Minuten später?
+
+Gelangweilt:
+Das ist, als würde man Sandkörner einzeln zählen.`;
 
   return (
     <div className="max-w-2xl mx-auto p-6">
