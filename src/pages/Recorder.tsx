@@ -3,7 +3,7 @@ import { useUser } from '@clerk/clerk-react';
 import { MicSelector } from '../components/MicSelector';
 import { PromptDisplay } from '../components/PromptDisplay';
 import { RecorderControls } from '../components/RecorderControls';
-import { Prompt } from '../utils/types';
+import { Prompt } from '../utils/parsePrompts';
 import { slugify } from '../utils/slugify';
 import { supabase } from '../lib/supabase';
 
