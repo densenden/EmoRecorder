@@ -1,69 +1,158 @@
-# React + TypeScript + Vite
+# EmoRecorder
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  <strong>A modern emotion-based audio recording web application</strong>
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+  Record emotional prompts as high-quality WAV files, organized by emotion and synced to the cloud
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Core Functionality
+- **Emotion-Based Recording** - Record audio snippets based on predefined emotional prompts
+- **Professional Audio Quality** - Capture high-fidelity WAV format recordings
+- **Smart Organization** - Auto-categorize recordings by emotion type
+- **Cloud Storage** - Seamlessly sync recordings to Supabase Storage
+- **Multi-Device Support** - Select from available microphones
+- **Real-time Preview** - Listen to recordings before saving
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Technical Highlights
+- **Authentication** - Secure login via Clerk (email or social providers)
+- **Dark Mode** - Automatic light/dark theme detection
+- **Responsive Design** - Mobile-first, works on all devices
+- **Modern Stack** - React 18, TypeScript, Vite for blazing-fast performance
+- **Clean Architecture** - Well-organized component structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+- Node.js 18+ and npm
+- Clerk account for authentication
+- Supabase account for storage
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/emorecorder.git
+cd emorecorder
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies
+```bash
+npm install
 ```
+
+3. Configure environment variables
+```env
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_PUBLISHABLE=your_supabase_publishable_key
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+```
+
+4. Start the development server
+```bash
+npm run dev
+```
+
+## Usage
+
+### Import Prompts
+Enter your prompts in the following format:
+```
+Emotion:
+First sentence to record.
+Second sentence to record.
+
+Another Emotion:
+Another sentence.
+```
+
+### Recording Flow
+1. **Select Microphone** - Choose from available input devices
+2. **View Prompt** - See the current emotion and sentence
+3. **Record** - Click to start recording
+4. **Preview** - Listen to your recording
+5. **Save or Retry** - Save to cloud or re-record
+
+### File Organization
+Recordings are automatically organized:
+```
+/user_id/
+  /emotion/
+    emotion_sentence-slug.wav
+```
+
+## Tech Stack
+
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: TailwindCSS with automatic dark mode
+- **Authentication**: Clerk
+- **Storage**: Supabase Storage
+- **Audio**: Web Audio API
+- **Font**: Inter
+
+## Project Structure
+
+```
+src/
+├── components/        # Reusable UI components
+│   ├── MicSelector.tsx
+│   ├── PromptDisplay.tsx
+│   └── RecorderControls.tsx
+├── pages/            # Page components
+│   ├── ImportPrompts.tsx
+│   └── Recorder.tsx
+├── utils/            # Utility functions
+│   ├── audioRecorder.ts
+│   ├── parsePrompts.ts
+│   └── slugify.ts
+└── lib/              # External service configs
+    └── supabase.ts
+```
+
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+### Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Roadmap
+
+- [ ] Add Whisper AI for emotion accuracy evaluation
+- [ ] Export recording metadata as CSV
+- [ ] Voice warmup/training mode
+- [ ] Batch upload for offline recordings
+- [ ] Advanced audio processing (noise reduction, normalization)
+- [ ] Multi-language support
+- [ ] Recording analytics dashboard
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details
+
+## Acknowledgments
+
+Built with modern web technologies and best practices for performance and user experience.
+
+---
+
+<p align="center">
+  Made with React + TailwindCSS + Web Audio API
+</p>
