@@ -8,7 +8,7 @@ import {
 } from '@clerk/clerk-react';
 import { ImportPrompts } from './pages/ImportPrompts';
 import { Recorder } from './pages/Recorder';
-import { Prompt } from './utils/parsePrompts';
+import { Prompt } from './utils/types';
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 

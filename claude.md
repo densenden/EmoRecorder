@@ -1,11 +1,3 @@
-Perfekt. Hier ist deine vollständige claude.md-Datei auf Englisch – bereit für Claude, Cursor oder jede andere AI-gestützte Dev-Umgebung.
-
-Die Datei ist exakt auf dein Setup abgestimmt: React + TailwindCSS, Clerk Auth, Supabase Storage, automatische Light/Dark Mode-Erkennung, WAV-Dateiuploads in Ordnern nach Emotion, Inter Font, mobilfähig, performant und klar strukturiert.
-
-⸻
-
-📄 claude.md
-
 # Project: EmoRecorder – Emotion-based Audio Recording App
 
 ## Goal
@@ -28,7 +20,29 @@ Build a performant, mobile-friendly web app using React + TailwindCSS that allow
 
 ## Key Features
 
-- ✅ Import sentence+emotion prompts as text
+- ✅ Import sentence+emotion prompts as text, (Traurig:
+Hast du irgendwelche Ratschläge in Betracht gezogen?
+
+Datei auswählen
+Keine Datei ausgewählt
+Lachend:
+Was ist der gefährlichste Kaffee der Welt? Der *Expresso!*
+
+Datei auswählen
+Keine Datei ausgewählt
+Flüsternd:
+Das Ziel Großbritanniens bei der Gründung von New South Wales war es, eine Strafkolonie zu errichten.
+
+Datei auswählen
+Keine Datei ausgewählt
+Verwirrt:
+Der erste wird in 16 Stunden und 6 Minuten aktiviert, und der zweite 6 Stunden und 7 Minuten später?
+
+Datei auswählen
+Keine Datei ausgewählt
+Gelangweilt:
+Das ist, als würde man Sandkörner einzeln zählen.)
+
 - ✅ Display sentence + emotion per step
 - ✅ System mic selection (via MediaDevices)
 - ✅ Record audio and preview it
@@ -133,14 +147,6 @@ main.tsx
     •   No Gradients
     •   Frosted Glass, minimalist regular font 
 
-⸻
-
-Required Env Vars (.env)
-
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_SECRET=your_supabase_secret_key
-VITE_SUPABASE_PUBLISHABLE=your_supabase_publishable_key
-VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
 
 ⸻

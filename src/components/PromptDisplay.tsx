@@ -1,5 +1,5 @@
 import React from 'react';
-import { Prompt } from '../utils/parsePrompts';
+import { Prompt } from '../utils/types';
 
 interface PromptDisplayProps {
   prompt: Prompt;
