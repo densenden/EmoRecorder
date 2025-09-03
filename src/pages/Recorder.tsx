@@ -30,7 +30,12 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
       const filename = `${emotion}_${sentenceSlug}.wav`;
       const path = `${user.id}/${emotion}/${filename}`;
 
-      const { error } = await supabase.storage
+      // First, check if the bucket exists or create it
+      const { data: buckets, error: listError } = await supabase.storage.listBuckets();
+      console.log('Available buckets:', buckets);
+      console.log('List error:', listError);
+
+      const { data, error } = await supabase.storage
         .from('emo-recordings')
         .upload(path, audioBlob, {
           contentType: 'audio/wav',
@@ -38,9 +43,12 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
         });
 
       if (error) {
-        console.error('Upload error:', error);
-        alert('Failed to upload audio. Please try again.');
+        console.error('Upload error details:', error);
+        console.error('Error message:', error.message);
+        console.error('Error status:', error.statusCode);
+        alert(`Failed to upload audio: ${error.message}`);
       } else {
+        console.log('Upload successful:', data);
         moveToNext();
       }
     } catch (error) {
