@@ -63,7 +63,6 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
         alert(errorMessage);
         console.error('Full error details:', {
           message: error.message,
-          statusCode: error.statusCode,
           error
         });
       } else {
