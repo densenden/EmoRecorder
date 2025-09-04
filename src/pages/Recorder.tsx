@@ -30,7 +30,7 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
       const emotionSlug = slugify(currentPrompt.emotion.toLowerCase());
       const sentenceSlug = slugify(currentPrompt.sentence.slice(0, 50));
       const filename = `${emotionSlug}_${sentenceSlug}.wav`;
-      const path = `${user.id}/${emotionSlug}/${filename}`;
+      const path = `${user.id}/${filename}`;
 
       // Log upload attempt
       console.log('Attempting to upload:', {
@@ -95,7 +95,7 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
         const emotionSlug = slugify(currentPrompt.emotion.toLowerCase());
         const sentenceSlug = slugify(currentPrompt.sentence.slice(0, 50));
         const filename = `${emotionSlug}_${sentenceSlug}.wav`;
-        const path = `${user?.id}/${emotionSlug}/${filename}`;
+        const path = `${user?.id}/${filename}`;
         
         // Check if this was the last file uploaded
         const lastFile = finalFiles[finalFiles.length - 1];

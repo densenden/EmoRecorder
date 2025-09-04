@@ -82,9 +82,46 @@ export class AudioRecorder {
     const audioContext = new AudioContext({ sampleRate: 48000 });
     const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
     
+    // Trim 0.5 seconds from start and end to remove clicks/buffer
+    const trimmedBuffer = this.trimAudioBuffer(audioBuffer, 0.5, 0.5);
+    
     // Convert AudioBuffer to high-quality WAV
-    const wavBuffer = this.audioBufferToWav(audioBuffer);
+    const wavBuffer = this.audioBufferToWav(trimmedBuffer);
     return new Blob([wavBuffer], { type: 'audio/wav' });
+  }
+  
+  private trimAudioBuffer(buffer: AudioBuffer, trimStart: number, trimEnd: number): AudioBuffer {
+    const sampleRate = buffer.sampleRate;
+    const startOffset = Math.floor(trimStart * sampleRate);
+    const endOffset = Math.floor(trimEnd * sampleRate);
+    
+    // Calculate new length
+    const newLength = buffer.length - startOffset - endOffset;
+    
+    // Ensure we don't have negative or zero length
+    if (newLength <= 0) {
+      return buffer; // Return original if trim would remove everything
+    }
+    
+    // Create new audio buffer with trimmed length
+    const trimmedBuffer = new AudioBuffer({
+      numberOfChannels: buffer.numberOfChannels,
+      length: newLength,
+      sampleRate: buffer.sampleRate
+    });
+    
+    // Copy trimmed data for each channel
+    for (let channel = 0; channel < buffer.numberOfChannels; channel++) {
+      const originalData = buffer.getChannelData(channel);
+      const trimmedData = trimmedBuffer.getChannelData(channel);
+      
+      // Copy data, skipping the trimmed portions
+      for (let i = 0; i < newLength; i++) {
+        trimmedData[i] = originalData[i + startOffset];
+      }
+    }
+    
+    return trimmedBuffer;
   }
   
   private audioBufferToWav(buffer: AudioBuffer): ArrayBuffer {
