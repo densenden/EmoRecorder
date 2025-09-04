@@ -26,10 +26,11 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
 
     setIsUploading(true);
     try {
-      const emotion = currentPrompt.emotion.toLowerCase();
+      // Apply slugify to both emotion (folder name) and sentence (filename)
+      const emotionSlug = slugify(currentPrompt.emotion.toLowerCase());
       const sentenceSlug = slugify(currentPrompt.sentence.slice(0, 50));
-      const filename = `${emotion}_${sentenceSlug}.wav`;
-      const path = `${user.id}/${emotion}/${filename}`;
+      const filename = `${emotionSlug}_${sentenceSlug}.wav`;
+      const path = `${user.id}/${emotionSlug}/${filename}`;
 
       // Log upload attempt
       console.log('Attempting to upload:', {
@@ -91,10 +92,10 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
       // Pass the updated files list including the last uploaded file
       const finalFiles = [...uploadedFiles];
       if (currentPrompt) {
-        const emotion = slugify(currentPrompt.emotion.toLowerCase());
+        const emotionSlug = slugify(currentPrompt.emotion.toLowerCase());
         const sentenceSlug = slugify(currentPrompt.sentence.slice(0, 50));
-        const filename = `${emotion}_${sentenceSlug}.wav`;
-        const path = `${user?.id}/${emotion}/${filename}`;
+        const filename = `${emotionSlug}_${sentenceSlug}.wav`;
+        const path = `${user?.id}/${emotionSlug}/${filename}`;
         
         // Check if this was the last file uploaded
         const lastFile = finalFiles[finalFiles.length - 1];
