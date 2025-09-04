@@ -11,14 +11,14 @@ export class AudioRecorder {
       audio: deviceId ? {
         deviceId: { exact: deviceId },
         sampleRate: 48000,
-        sampleSize: 16,
+        sampleSize: 24,
         channelCount: 1,
         echoCancellation: false,
         noiseSuppression: false,
         autoGainControl: false
       } : {
         sampleRate: 48000,
-        sampleSize: 16,
+        sampleSize: 24,
         channelCount: 1,
         echoCancellation: false,
         noiseSuppression: false,
@@ -37,7 +37,7 @@ export class AudioRecorder {
     // Use high-quality recording options
     const options = {
       mimeType: 'audio/webm;codecs=opus',
-      audioBitsPerSecond: 256000
+      audioBitsPerSecond: 384000 // Increased for 24-bit audio
     };
     
     // Fallback for browsers that don't support webm
@@ -88,7 +88,8 @@ export class AudioRecorder {
   }
   
   private audioBufferToWav(buffer: AudioBuffer): ArrayBuffer {
-    const length = buffer.length * buffer.numberOfChannels * 2 + 44;
+    const bytesPerSample = 3; // 24-bit audio
+    const length = buffer.length * buffer.numberOfChannels * bytesPerSample + 44;
     const arrayBuffer = new ArrayBuffer(length);
     const view = new DataView(arrayBuffer);
     const channels = [];
@@ -119,12 +120,12 @@ export class AudioRecorder {
     writeString('WAVE');
     writeString('fmt ');
     setUint32(16);
-    setUint16(1);
+    setUint16(1); // PCM format
     setUint16(buffer.numberOfChannels);
     setUint32(buffer.sampleRate);
-    setUint32(buffer.sampleRate * 2 * buffer.numberOfChannels);
-    setUint16(buffer.numberOfChannels * 2);
-    setUint16(16);
+    setUint32(buffer.sampleRate * bytesPerSample * buffer.numberOfChannels);
+    setUint16(buffer.numberOfChannels * bytesPerSample);
+    setUint16(24); // 24 bits per sample
     writeString('data');
     setUint32(length - pos - 4);
     
@@ -133,13 +134,17 @@ export class AudioRecorder {
       channels.push(buffer.getChannelData(i));
     }
     
-    // Interleave channels and convert to 16-bit PCM
+    // Interleave channels and convert to 24-bit PCM
     while (offset < buffer.length) {
       for (let i = 0; i < buffer.numberOfChannels; i++) {
         let sample = Math.max(-1, Math.min(1, channels[i][offset]));
-        sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
-        view.setInt16(pos, sample, true);
-        pos += 2;
+        // Convert float to 24-bit integer
+        const value = Math.floor(sample * 0x7FFFFF);
+        // Write 24-bit value (3 bytes) in little-endian format
+        view.setUint8(pos, value & 0xFF);
+        view.setUint8(pos + 1, (value >> 8) & 0xFF);
+        view.setUint8(pos + 2, (value >> 16) & 0xFF);
+        pos += 3;
       }
       offset++;
     }

@@ -9,7 +9,7 @@ SenRecorder helps you record audio samples based on emotional prompts. Simply pa
 ## Features
 
 - 📝 Import multiple sentences with emotions at once
-- 🎙️ Record high-quality WAV audio (48kHz, 16-bit, mono)
+- 🎙️ Record high-quality WAV audio (48kHz, 24-bit, mono)
 - 🔊 Preview recordings before saving
 - 📥 Download all recordings as ZIP
 - 📊 Export metadata as CSV
