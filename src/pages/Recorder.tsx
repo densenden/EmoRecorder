@@ -9,7 +9,7 @@ import { supabase } from '../lib/supabase';
 
 interface RecorderProps {
   prompts: Prompt[];
-  onComplete: () => void;
+  onComplete: (recordings: Array<{path: string; emotion: string; sentence: string}>) => void;
 }
 
 export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
@@ -17,6 +17,7 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedDevice, setSelectedDevice] = useState<string>('');
   const [isUploading, setIsUploading] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<Array<{path: string; emotion: string; sentence: string}>>([]);
 
   const currentPrompt = prompts[currentIndex];
 
@@ -67,6 +68,12 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
         });
       } else {
         console.log('Upload successful!', data);
+        // Track uploaded file
+        setUploadedFiles(prev => [...prev, {
+          path,
+          emotion: currentPrompt.emotion,
+          sentence: currentPrompt.sentence
+        }]);
         moveToNext();
       }
     } catch (error) {
@@ -81,7 +88,25 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
     if (currentIndex < prompts.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      onComplete();
+      // Pass the updated files list including the last uploaded file
+      const finalFiles = [...uploadedFiles];
+      if (currentPrompt) {
+        const emotion = slugify(currentPrompt.emotion.toLowerCase());
+        const sentenceSlug = slugify(currentPrompt.sentence.slice(0, 50));
+        const filename = `${emotion}_${sentenceSlug}.wav`;
+        const path = `${user?.id}/${emotion}/${filename}`;
+        
+        // Check if this was the last file uploaded
+        const lastFile = finalFiles[finalFiles.length - 1];
+        if (!lastFile || lastFile.path !== path) {
+          finalFiles.push({
+            path,
+            emotion: currentPrompt.emotion,
+            sentence: currentPrompt.sentence
+          });
+        }
+      }
+      onComplete(finalFiles);
     }
   };
 

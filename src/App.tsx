@@ -8,6 +8,7 @@ import {
 } from '@clerk/clerk-react';
 import { ImportPrompts } from './pages/ImportPrompts';
 import { Recorder } from './pages/Recorder';
+import { CompletionPage } from './pages/CompletionPage';
 import type { Prompt } from './utils/parsePrompts';
 
 const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -15,16 +16,24 @@ const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 function App() {
   const [prompts, setPrompts] = useState<Prompt[]>([]);
   const [isRecording, setIsRecording] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [recordedFiles, setRecordedFiles] = useState<Array<{path: string; emotion: string; sentence: string}>>();
 
   const handleImport = (importedPrompts: Prompt[]) => {
     setPrompts(importedPrompts);
     setIsRecording(true);
   };
 
-  const handleComplete = () => {
+  const handleComplete = (recordings: Array<{path: string; emotion: string; sentence: string}>) => {
     setIsRecording(false);
+    setIsCompleted(true);
+    setRecordedFiles(recordings);
+  };
+
+  const handleStartNew = () => {
+    setIsCompleted(false);
     setPrompts([]);
-    alert('All recordings completed successfully!');
+    setRecordedFiles(undefined);
   };
 
   return (
@@ -54,7 +63,12 @@ function App() {
           </div>
 
           <div className="py-8">
-            {!isRecording ? (
+            {isCompleted && recordedFiles ? (
+              <CompletionPage 
+                recordedFiles={recordedFiles} 
+                onStartNew={handleStartNew} 
+              />
+            ) : !isRecording ? (
               <ImportPrompts onImport={handleImport} />
             ) : (
               <Recorder prompts={prompts} onComplete={handleComplete} />
