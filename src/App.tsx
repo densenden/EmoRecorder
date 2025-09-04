@@ -43,7 +43,7 @@ function App() {
           <div className="flex items-center justify-center min-h-screen">
             <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg">
               <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center">
-                EmoRecorder
+                SenRecorder
               </h1>
               <SignIn />
             </div>
@@ -55,7 +55,7 @@ function App() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16">
                 <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-                  EmoRecorder
+                  SenRecorder
                 </h1>
                 <UserButton afterSignOutUrl="/" />
               </div>
