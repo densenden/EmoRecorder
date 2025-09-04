@@ -112,13 +112,13 @@ function App() {
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                   <div className="flex gap-6 text-sm text-gray-600 dark:text-gray-400">
-                    <a href="https://sen.studio/imprint" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                    <a href="https://www.sen.studio/content/legal/imprint.html" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
                       Imprint
                     </a>
-                    <a href="https://sen.studio/terms" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                    <a href="https://www.sen.studio/content/legal/terms.html" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
                       Terms
                     </a>
-                    <a href="https://sen.studio/privacy" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                    <a href="https://www.sen.studio/content/legal/privacy.html" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
                       Privacy
                     </a>
                   </div>
@@ -131,7 +131,7 @@ function App() {
                   </div>
                 </div>
                 <div className="mt-6 text-center text-xs text-gray-500 dark:text-gray-500">
-                  © {new Date().getFullYear()} sen.studio. All rights reserved.
+                  © 2025 SEN.CO UG. All rights reserved.
                 </div>
               </div>
             </footer>
