@@ -13,7 +13,7 @@ export function TopBar({ title, subtitle, showUserButton = false }: TopBarProps)
         <div className="flex justify-between items-center h-12 sm:h-16">
           <a href="/" className="flex items-baseline gap-3">
             <img 
-              src="/src/assets/logo.svg" 
+              src="/logo.svg" 
               alt="SenRecorder Logo" 
               className="w-6 h-6 sm:w-7 sm:h-7 text-primary"
             />

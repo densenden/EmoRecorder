@@ -15,7 +15,7 @@ export function About() {
           <div className="card-primary p-8 text-center">
             <div className="mb-6">
               <img 
-                src="/src/assets/logo.svg" 
+                src="/logo.svg" 
                 alt="SenRecorder Logo" 
                 className="mx-auto w-32 h-32"
               />
@@ -60,7 +60,7 @@ export function About() {
 
             <div className="card-primary p-6">
               <img 
-                src="/src/assets/about-hero.jpg" 
+                src="/about-hero.jpg" 
                 alt="Professional Audio Waveform Visualization" 
                 className="w-full h-48 object-cover rounded-xl mb-4"
               />
@@ -179,7 +179,7 @@ export function About() {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
                 <img 
-                  src="/src/assets/studio-sen.jpg" 
+                  src="/studio-sen.jpg" 
                   alt="Studio Sen - Digital Innovation" 
                   className="w-full h-48 object-cover rounded-xl"
                 />

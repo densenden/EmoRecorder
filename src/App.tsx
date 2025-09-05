@@ -56,7 +56,7 @@ function App() {
             <div className="card-primary p-8">
               <div className="flex items-baseline justify-center gap-4 mb-6">
                 <img 
-                  src="/src/assets/logo.svg" 
+                  src="/logo.svg" 
                   alt="SenRecorder Logo" 
                   className="w-12 h-12 text-gray-900 dark:text-gray-100"
                 />
