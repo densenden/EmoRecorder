@@ -1,24 +1,27 @@
 # SenRecorder
 
-Record emotional audio samples with ease. Perfect for voice actors, language learners, and audio dataset creation.
+Professional emotion audio recording tool for AI training, voice research, and content creation. Create high-quality emotional voice datasets with precise organization and studio-quality audio.
 
 ## What It Does
 
-SenRecorder helps you record audio samples based on emotional prompts. Simply paste your sentences with emotions, and the app guides you through recording each one. All recordings are automatically organized and can be downloaded as a bundle.
+SenRecorder is a specialized web application for recording emotional voice samples with professional audio quality. Perfect for AI developers, researchers, voice actors, and content creators who need structured emotional audio datasets.
 
 ## Features
 
-- 📝 Import multiple sentences with emotions at once
-- 🎙️ Record high-quality WAV audio (48kHz, 24-bit, mono)
-- 🔊 Preview recordings before saving
-- 📥 Download all recordings as ZIP
-- 📊 Export metadata as CSV
-- 🌓 Automatic dark/light mode
-- 📱 Works on mobile and desktop
+- 🎙️ **Studio Quality Audio**: 48kHz, 24-bit WAV recordings
+- 📝 **Batch Recording**: Import multiple emotion/sentence pairs
+- 🎯 **Single Recording**: Record individual sentences on-demand
+- 📊 **Smart Organization**: Automatic file naming and metadata
+- 📥 **Bulk Download**: ZIP export with CSV metadata
+- 🔊 **Real-time Preview**: Listen before saving
+- 🌓 **Modern UI**: Glass morphism design with dark/light modes
+- 📱 **Cross-platform**: Works on desktop and mobile browsers
+- 🔐 **Secure**: Private recordings with user authentication
 
-## How to Use
+## Recording Modes
 
-1. **Sign in** with your email or social account
+### Batch Recording (Main Page)
+1. **Sign in** with your email or social account  
 2. **Import your prompts** in this format:
    ```
    Happy:
@@ -28,7 +31,13 @@ SenRecorder helps you record audio samples based on emotional prompts. Simply pa
    I miss the old times.
    ```
 3. **Record** each sentence with the shown emotion
-4. **Download** all recordings when done
+4. **Download** all recordings as ZIP when complete
+
+### Single Recording (/orga)
+1. **Enter a sentence** to record
+2. **Click record** and speak clearly
+3. **Preview** your recording
+4. **Download immediately** or record another
 
 ## Example Prompts
 
@@ -47,7 +56,16 @@ This is absolutely unacceptable!
 
 ## Live App
 
-Visit: https://senrecorder.vercel.app
+Visit: **https://recorder.sen.studio**
+
+## Use Cases
+
+- **AI Training**: Create emotional voice datasets for machine learning
+- **Voice Research**: Linguistic studies and prosody analysis
+- **Content Creation**: Professional voiceovers and audio content
+- **Language Learning**: Pronunciation guides and emotional expression
+- **Voice Acting**: Build portfolios with organized samples
+- **Speech Therapy**: Communication training and progress tracking
 
 ## Local Development
 
@@ -67,12 +85,23 @@ npm run build
 - Modern web browser with microphone access
 - Account for login (free)
 
-## Privacy
+## Technical Specifications
+
+- **Audio Format**: Uncompressed WAV (PCM)
+- **Sample Rate**: 48 kHz
+- **Bit Depth**: 24-bit
+- **Channels**: Mono
+- **Browser Support**: Modern browsers with Web Audio API
+- **Authentication**: Clerk secure login
+- **Storage**: Cloud-based with instant download
+
+## Privacy & Security
 
 - Your recordings are private and secure
-- Only you can access your recordings
+- Only you can access your recordings  
 - Download and delete anytime
+- No recording data is shared or analyzed
 
 ---
 
-Built with React, TypeScript, and TailwindCSS
+**Built by [Studio Sen](https://sen.studio)** • Custom development: [dev.sen.studio](https://dev.sen.studio)
