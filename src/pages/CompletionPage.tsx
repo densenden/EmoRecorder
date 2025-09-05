@@ -85,56 +85,57 @@ export const CompletionPage: React.FC<CompletionPageProps> = ({
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <div className="text-center mb-8">
-        <div className="mb-4">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full mb-4">
-            <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
-        </div>
-        
-        <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-gray-100">
-          Recording Complete!
-        </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-2">
-          You successfully recorded {recordedFiles.length} audio files
-        </p>
-      </div>
-
-      <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
-          Your Recordings
-        </h2>
-        <div className="space-y-2 max-h-64 overflow-y-auto">
-          {recordedFiles.map((file, index) => (
-            <div 
-              key={index}
-              className="flex items-center justify-between py-2 px-3 bg-white dark:bg-gray-700 rounded"
-            >
-              <div className="flex-1">
-                <span className="font-medium text-gray-900 dark:text-gray-100">
-                  {file.emotion}
-                </span>
-                <span className="text-gray-500 dark:text-gray-400 ml-2">
-                  {file.sentence.slice(0, 50)}...
-                </span>
-              </div>
-              <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+    <div className="max-w-2xl mx-auto px-4">
+      <div className="card-primary p-8">
+        <div className="text-center mb-8">
+          <div className="mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-status-success/10 rounded-full mb-4">
+              <svg className="w-8 h-8 text-status-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-          ))}
+          </div>
+          
+          <h2 className="text-3xl font-thin mb-2 text-primary">
+            Recording Complete!
+          </h2>
+          <p className="text-lg text-secondary mb-2">
+            You successfully recorded {recordedFiles.length} audio files
+          </p>
         </div>
-      </div>
 
-      <div className="space-y-3">
-        <button
-          onClick={downloadAllRecordings}
-          disabled={isDownloading}
-          className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
-        >
+        <div className="card-secondary p-6 mb-6">
+          <h3 className="text-xl font-semibold mb-4 text-primary">
+            Your Recordings
+          </h3>
+          <div className="space-y-2 max-h-64 overflow-y-auto">
+            {recordedFiles.map((file, index) => (
+              <div 
+                key={index}
+                className="flex items-center justify-between py-2 px-3 surface-elevated rounded"
+              >
+                <div className="flex-1">
+                  <span className="font-medium text-primary">
+                    {file.emotion}
+                  </span>
+                  <span className="text-muted ml-2">
+                    {file.sentence.slice(0, 50)}...
+                  </span>
+                </div>
+                <svg className="w-5 h-5 text-status-success" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <button
+            onClick={downloadAllRecordings}
+            disabled={isDownloading}
+            className="w-full btn-primary flex items-center justify-center gap-2 disabled:opacity-50"
+          >
           {isDownloading ? (
             <>
               <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
@@ -150,29 +151,30 @@ export const CompletionPage: React.FC<CompletionPageProps> = ({
           )}
         </button>
 
-        <button
-          onClick={downloadMetadata}
-          className="w-full px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
-        >
+          <button
+            onClick={downloadMetadata}
+            className="w-full btn-outline flex items-center justify-center gap-2"
+          >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
           Download Metadata (CSV)
         </button>
 
-        <button
-          onClick={onStartNew}
-          className="w-full px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition-colors"
-        >
-          Record New Set
-        </button>
+          <button
+            onClick={onStartNew}
+            className="w-full btn-secondary"
+          >
+            Record New Set
+          </button>
+        </div>
       </div>
 
       {isDownloading && (
         <div className="mt-4">
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div className="w-full bg-border-light dark:bg-border-dark rounded-full h-2">
             <div 
-              className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+              className="bg-accent-primary h-2 rounded-full transition-all duration-300"
               style={{ width: `${downloadProgress}%` }}
             />
           </div>

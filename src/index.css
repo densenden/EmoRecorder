@@ -3,9 +3,75 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure body takes full height */
-html, body, #root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+@layer base {
+  /* Base styles */
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Set default text colors for light/dark modes */
+  html {
+    @apply text-text-primary-light bg-surface-light;
+  }
+  
+  html.dark {
+    @apply text-text-primary-dark bg-surface-dark;
+  }
+}
+
+@layer components {
+  /* Card components */
+  .card-primary {
+    @apply bg-white/60 dark:bg-gray-800/60 backdrop-blur-xl rounded-3xl border border-white/30 dark:border-gray-700/40 shadow-2xl;
+  }
+  
+  .card-secondary {
+    @apply bg-white/60 dark:bg-gray-800/60 backdrop-blur-lg rounded-2xl border border-white/30 dark:border-gray-700/40 shadow-lg;
+  }
+
+  /* Button components */
+  .btn-primary {
+    @apply bg-accent-primary hover:bg-brand-coral text-surface-light px-4 py-2 rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm;
+  }
+  
+  .btn-secondary {
+    @apply bg-accent-secondary hover:bg-brand-rose text-surface-light px-4 py-2 rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm;
+  }
+  
+  .btn-outline {
+    @apply bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600 text-text-primary-light dark:text-text-primary-dark rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md px-4 py-2;
+  }
+
+  .btn-error {
+    @apply bg-status-error hover:bg-brand-red text-surface-light px-4 py-2 rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm;
+  }
+
+  /* Surface components */
+  .surface-primary {
+    @apply bg-surface-light dark:bg-surface-dark;
+  }
+  
+  .surface-elevated {
+    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-white/40 dark:border-gray-700/50;
+  }
+
+  /* Text utilities */
+  .text-primary {
+    @apply text-text-primary-light dark:text-text-primary-dark;
+  }
+  
+  .text-secondary {
+    @apply text-text-secondary-light dark:text-text-secondary-dark;
+  }
+  
+  .text-muted {
+    @apply text-text-muted-light dark:text-text-muted-dark;
+  }
+
+  /* Navigation components */
+  .nav-toggle {
+    @apply min-w-16 px-3 py-1.5 text-xs font-medium text-center text-text-secondary-light dark:text-text-secondary-dark bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-50 dark:hover:bg-gray-600 hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200 shadow-sm;
+  }
 }

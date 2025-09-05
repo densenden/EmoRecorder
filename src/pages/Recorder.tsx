@@ -6,6 +6,7 @@ import { RecorderControls } from '../components/RecorderControls';
 import type { Prompt } from '../utils/parsePrompts';
 import { slugify } from '../utils/slugify';
 import { supabase } from '../lib/supabase';
+import { CloudStorage } from '../utils/cloudStorage';
 
 interface RecorderProps {
   prompts: Prompt[];
@@ -69,6 +70,19 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
         });
       } else {
         console.log('Upload successful!', data);
+        
+        // Also save to CloudStorage for the downloads page
+        try {
+          await CloudStorage.uploadRecording(audioBlob, {
+            userId: user.id,
+            sentence: currentPrompt.sentence,
+            emotion: currentPrompt.emotion,
+            type: 'batch'
+          });
+        } catch (error) {
+          console.error('CloudStorage save failed:', error);
+        }
+        
         // Track uploaded file
         setUploadedFiles(prev => [...prev, {
           path,
@@ -122,40 +136,46 @@ export const Recorder: React.FC<RecorderProps> = ({ prompts, onComplete }) => {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <div className="mb-8">
-        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+    <div className="max-w-2xl mx-auto px-4 pt-8">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold mb-4 text-gray-800 dark:text-gray-100">
+          Batch Recording
+        </h1>
+        <p className="text-gray-600 dark:text-gray-400 text-lg mb-6">
+          {currentIndex + 1} of {prompts.length} prompts
+        </p>
+        <div className="w-full bg-gray-200/60 dark:bg-gray-700/60 rounded-full h-3 backdrop-blur-sm">
           <div 
-            className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-300 shadow-sm"
             style={{ width: `${((currentIndex + 1) / prompts.length) * 100}%` }}
           />
         </div>
       </div>
 
-      <MicSelector onDeviceSelect={setSelectedDevice} />
+      <div className="p-8 shadow-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-gray-700/30 space-y-6">
+        <MicSelector onDeviceSelect={setSelectedDevice} />
 
-      <PromptDisplay 
-        prompt={currentPrompt} 
-        currentIndex={currentIndex}
-        totalPrompts={prompts.length}
-      />
+        <PromptDisplay 
+          prompt={currentPrompt} 
+          currentIndex={currentIndex}
+          totalPrompts={prompts.length}
+        />
 
-      <RecorderControls 
-        onSave={handleSave}
-        onSkip={moveToNext}
-        deviceId={selectedDevice}
-      />
+        <RecorderControls 
+          onSave={handleSave}
+          onSkip={moveToNext}
+          deviceId={selectedDevice}
+        />
 
-      {isUploading && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-              <p className="text-gray-900 dark:text-gray-100">Uploading...</p>
+        {isUploading && (
+          <div className="text-center py-4">
+            <div className="inline-flex items-center gap-3 bg-blue-50/80 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-4 py-3 rounded-2xl backdrop-blur-sm">
+              <div className="animate-spin rounded-full h-6 w-6 border-2 border-current border-t-transparent"></div>
+              <span className="font-medium">Uploading recording...</span>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

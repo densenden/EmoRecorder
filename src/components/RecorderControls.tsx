@@ -56,9 +56,9 @@ export const RecorderControls: React.FC<RecorderControlsProps> = ({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {audioUrl && (
-        <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+        <div className="bg-green-50/80 dark:bg-green-900/20 border border-green-200/60 dark:border-green-700/40 rounded-2xl p-4 backdrop-blur-sm">
           <audio ref={audioRef} src={audioUrl} controls className="w-full" />
         </div>
       )}
@@ -67,7 +67,7 @@ export const RecorderControls: React.FC<RecorderControlsProps> = ({
         {!isRecording && !audioBlob && (
           <button
             onClick={startRecording}
-            className="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
+            className="px-4 py-2 bg-red-500/80 hover:bg-red-600/80 text-white rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm flex items-center gap-2"
           >
             <span className="text-xl">●</span>
             Start Recording
@@ -77,7 +77,7 @@ export const RecorderControls: React.FC<RecorderControlsProps> = ({
         {isRecording && (
           <button
             onClick={stopRecording}
-            className="px-6 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors flex items-center gap-2"
+            className="px-4 py-2 bg-gray-700/80 hover:bg-gray-800/80 text-white rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm flex items-center gap-2"
           >
             <span className="text-xl">■</span>
             Stop
@@ -88,13 +88,13 @@ export const RecorderControls: React.FC<RecorderControlsProps> = ({
           <>
             <button
               onClick={handleRetry}
-              className="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+              className="px-4 py-2 bg-gray-500/80 hover:bg-gray-600/80 text-white rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm"
             >
               Retry
             </button>
             <button
               onClick={handleSave}
-              className="px-6 py-3 bg-green-500 hover:bg-green-600 text-white rounded-lg font-medium transition-colors"
+              className="px-4 py-2 bg-green-500/80 hover:bg-green-600/80 text-white rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md backdrop-blur-sm"
             >
               Save & Next
             </button>
@@ -104,7 +104,7 @@ export const RecorderControls: React.FC<RecorderControlsProps> = ({
         {!isRecording && (
           <button
             onClick={onSkip}
-            className="px-6 py-3 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-lg font-medium transition-colors"
+            className="px-4 py-2 bg-white/60 dark:bg-gray-700/60 backdrop-blur-sm border border-gray-200/60 dark:border-gray-600/60 hover:bg-white/80 dark:hover:bg-gray-600/80 text-gray-700 dark:text-gray-200 rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md"
           >
             Skip
           </button>

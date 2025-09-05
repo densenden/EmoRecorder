@@ -1,0 +1,24 @@
+SIMPLIFIED MIDJOURNEY PROMPTS FOR SENRECORDER ABOUT PAGE
+========================================================
+
+Only 2 new images needed (plus existing logo.svg):
+
+IMAGE 1 - AUDIO WAVEFORM HERO (about-hero.jpg):
+A sleek, modern audio waveform visualization with emotional color gradients, professional studio aesthetic, clean minimal design, floating microphone icon, warm purple and coral color scheme, glass morphism effect, 3D rendered, high-tech feel --ar 16:9 --v 6
+
+IMAGE 2 - STUDIO SEN BRANDING (studio-sen.jpg):  
+Modern digital innovation studio workspace, clean tech company aesthetic, floating development tools, code elements, geometric shapes, premium professional environment, purple and coral brand colors, glass effects, sophisticated business atmosphere --ar 16:9 --v 6
+
+DESIGN NOTES:
+============
+- Use existing /src/assets/logo.svg for hero section
+- Both images should maintain brand colors: #382859 (purple), #D95F43 (coral), #F2E0D0 (cream)
+- Keep consistent glass morphism and modern aesthetic
+- Ensure images work well on both light and dark themes
+- Professional quality suitable for business contexts
+- Optimized for web use (reasonable file sizes)
+
+USAGE:
+- about-hero.jpg: Used in "What is SenRecorder" section to show professional audio visualization
+- studio-sen.jpg: Used in "About Studio Sen" section to represent the company
+- logo.svg: Used in hero section (already exists in assets)

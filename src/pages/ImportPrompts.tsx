@@ -31,37 +31,37 @@ Gelangweilt:
 Das ist, als würde man Sandkörner einzeln zählen.`;
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100">
-        Import Prompts
-      </h1>
-      
-      <div className="mb-4">
-        <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-          Enter your prompts in the format: Emotion: followed by sentences
-        </label>
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          className="w-full h-64 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder={exampleText}
-        />
-      </div>
+    <div className="max-w-2xl mx-auto px-4">
+      <div className="card-primary p-8">
+        <div className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium mb-2 text-secondary">
+              Enter your prompts in the format: Emotion: followed by sentences
+            </label>
+            <textarea
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              className="w-full h-64 px-4 py-3 surface-elevated border border-border-light dark:border-border-dark rounded-2xl focus:outline-none focus:ring-2 focus:ring-accent-primary/50 focus:border-accent-primary/50 focus:surface-primary transition-all duration-200 shadow-sm font-mono text-sm text-primary"
+              placeholder={exampleText}
+            />
+          </div>
 
-      <div className="flex gap-3">
-        <button
-          onClick={handleImport}
-          disabled={!text.trim()}
-          className="px-6 py-3 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors"
-        >
-          Import Prompts
-        </button>
-        <button
-          onClick={() => setText(exampleText)}
-          className="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
-        >
-          Use Example
-        </button>
+          <div className="flex gap-3">
+            <button
+              onClick={handleImport}
+              disabled={!text.trim()}
+              className="flex-1 btn-primary disabled:opacity-50"
+            >
+              Import Prompts
+            </button>
+            <button
+              onClick={() => setText(exampleText)}
+              className="flex-1 btn-outline"
+            >
+              Use Example
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
