@@ -56,7 +56,7 @@ This is absolutely unacceptable!
 
 ## Live App
 
-Visit: **https://recorder.sen.studio**
+Visit: **https://senrecorder.vercel.app**
 
 ## Use Cases
 

@@ -1,4 +1,4 @@
-import { useUser } from '@clerk/clerk-react';
+// Cloud storage utility for managing user recordings
 
 interface RecordingMetadata {
   userId: string;

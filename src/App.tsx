@@ -4,8 +4,7 @@ import {
   ClerkProvider, 
   SignedIn, 
   SignedOut, 
-  SignIn,
-  UserButton
+  SignIn
 } from '@clerk/clerk-react';
 import { ImportPrompts } from './pages/ImportPrompts';
 import { Recorder } from './pages/Recorder';
