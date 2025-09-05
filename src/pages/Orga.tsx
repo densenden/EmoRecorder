@@ -216,7 +216,7 @@ export function Orga() {
             </div>
           </div>
           <div className="mt-3 sm:mt-6 text-center text-xs text-gray-500 dark:text-gray-500">
-            © 2025 Sen.Co UG. All rights reserved.
+            © 2025 SEN.CO UG. All rights reserved.
           </div>
         </div>
       </footer>
